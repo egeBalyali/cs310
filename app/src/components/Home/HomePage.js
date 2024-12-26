@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
-import FriendList from '../Shared/FriendList';
+import ConversationFriend from '../Shared/ConversationFriend';
 import ErrorMessage from '../Shared/ErrorMessage';
 import { UserContext } from '../../context/UserContext';
 import { fetchFriends } from '../../api/api';
@@ -23,11 +23,22 @@ const HomePage = ({ navigation }) => {
         loadFriends();
     }, [user]);
 
+    const handleViewConversation = (friendEmail) => {
+        navigation.navigate('Conversation', {
+            screen: 'Conversation',
+            params: { user1Email: user.email, user2Email: friendEmail }
+        });
+    };
     return (
         <View style={styles.container}>
             <Button title="Pending Requests" onPress={() => navigation.navigate('PendingRequests')} />
-            <Button title="Add New Friend" onPress={() => navigation.navigate('AddFriendship')} /> {/* Add New Friend button */}
-            {error ? <ErrorMessage message={error} /> : <FriendList friends={friends} />}
+            <Button title="Add New Friend" onPress={() => navigation.navigate('AddFriendship')} />
+            {error ? (
+                <ErrorMessage message={error} />
+            ) : (
+                <ConversationFriend friends={friends} onViewConversation={handleViewConversation} />
+            )}
+            <Button title='Groups' onPress={() =>navigation.navigate('GroupList') } />
         </View>
     );
 };
