@@ -14,6 +14,7 @@ const HomePage = ({ navigation }) => {
         const loadFriends = async () => {
             try {
                 const friendsData = await fetchFriends(user.email, user.token);
+                console.log(friendsData);
                 setFriends(friendsData);
             } catch (err) {
                 setError(err.message || 'Failed to fetch friends.');
@@ -36,7 +37,7 @@ const HomePage = ({ navigation }) => {
             {error ? (
                 <ErrorMessage message={error} />
             ) : (
-                <ConversationFriend friends={friends} onViewConversation={handleViewConversation} />
+                <ConversationFriend friends={friends} userEmail={user.email} onViewConversation={handleViewConversation} />
             )}
             <Button title='Groups' onPress={() =>navigation.navigate('GroupList') } />
         </View>

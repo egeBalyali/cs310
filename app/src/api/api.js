@@ -98,7 +98,8 @@ export const fetchConversation = async (token, user1Email, user2Email) => {
     }
 
     const data = await response.json();
-    return data.data; // Adjust according to the API response structure
+    const filteredData = data.data.filter((message) => !message.groupId);
+    return filteredData; // Adjust according to the API response structure
 };
 export const sendMessage = async (token, message) => {
     try {
