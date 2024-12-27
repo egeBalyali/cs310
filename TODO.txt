@@ -1,0 +1,3 @@
+atılmış ama kabul edilmemiş istekler atan kişide gözükçek, addFriend sayfasında
+pending de search bar
+HomePage de friendler için bir başlık, accepted da göstermesin.
