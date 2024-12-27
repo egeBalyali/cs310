@@ -195,6 +195,22 @@ export const sendGroupMessage = async (token, groupId, messageData) => {
     return data;
 };
 
+
+const filterUniqueMessages = (data) => {
+  const uniqueSet = new Set();
+  const uniqueList = [];
+
+  data.forEach((item) => {
+    const uniqueKey = `${item.senderEmail}-${item.content}-${item.id.slice(0, 8)}`;
+    if (!uniqueSet.has(uniqueKey)) {
+      uniqueSet.add(uniqueKey);
+      uniqueList.push(item);
+    }
+  });
+
+  return uniqueList;
+};
+
 export const getGroupMessages = async (token, groupId) => {
     const response = await fetch(`${API_URL}groups/${groupId}/messages`, {
         method: 'GET',
@@ -207,7 +223,7 @@ export const getGroupMessages = async (token, groupId) => {
     if (!response.ok) {
         throw new Error(data.message || 'Failed to fetch messages');
     }
-    return data.data;
+    return filterUniqueMessages(data.data);
 };
 
 export const getGroupMembers = async (token, groupId) => {

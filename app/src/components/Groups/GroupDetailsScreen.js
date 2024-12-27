@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { UserContext } from '../../context/UserContext';
-import {getGroupMembers} from "../../api/api";
+import {getGroupMembers, addGroupMember} from "../../api/api";
 
 const GroupDetailScreen = ({ route, navigation }) => {
   const { groupId } = route.params;

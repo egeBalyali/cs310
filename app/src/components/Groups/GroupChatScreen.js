@@ -3,6 +3,9 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView
 import { UserContext } from '../../context/UserContext';
 import { getGroupMessages, sendGroupMessage } from "../../api/api";
 
+
+
+
 const GroupChatScreen = ({ route }) => {
   const { groupId } = route.params;
   const { user } = useContext(UserContext);
