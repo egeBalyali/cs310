@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import { UserContext } from '../../context/UserContext';
-const API_URL = "http://192.168.56.1:8080/"
+const API_URL = "http://10.0.2.2:8080/"
 const LoginPage = ({ navigation }) => {
     const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
@@ -50,7 +50,6 @@ const LoginPage = ({ navigation }) => {
             />
             <Button title="Login" onPress={handleLogin} />
             {error ? <Text style={styles.error}>{error}</Text> : null}
-            <br></br>
             <Button title="Go to Register" onPress={() => navigation.navigate('Register')} /> {/* Link to RegisterPage */}
         </View>
     );

@@ -3,7 +3,7 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, KeyboardAvoidingView
 import { fetchConversation } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
 
-const API_URL = "http://localhost:8080/";
+const API_URL = "http://10.0.2.2:8080/";
 
 const sendMessage = async (token, message) => {
     try {

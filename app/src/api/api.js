@@ -1,4 +1,4 @@
-const API_URL = "http://192.168.56.1:8080/";
+const API_URL = "http://10.0.2.2:8080/";
 
 export const fetchFriends = async (email, token) => {
     const response = await fetch(`${API_URL}friends?email=${email}`, {
@@ -25,6 +25,28 @@ export const fetchPendingRequests = async (email, token) => {
     if (!response.ok) throw new Error(data.message);
     return data.data;
 };
+
+export const getSentRequests = async (token) => {
+    try {
+      const response = await fetch(`${API_URL}/friends/requests/sent`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch sent requests');
+      }
+      
+      const data = await response.json();
+      return Array.isArray(data) ? data : [];
+    } catch (error) {
+      console.error('Error fetching sent requests:', error);
+      return [];
+    }
+  };
 
 export const acceptRequest = async (senderEmail, receiverEmail, token) => {
     const response = await fetch(`${API_URL}friends/accept`, {

@@ -8,7 +8,7 @@ const ConversationFriend = ({ friends, onAccept, onViewConversation, userEmail }
         renderItem={({ item }) => (
             <View style={styles.card}>
                 <Text style={styles.text}>
-                    Friend: {item.senderEmail == userEmail ? item.receiverEmail : item.senderEmail} (Accepted: {item.accepted ? 'Yes' : 'No'})
+                    Friend: {item.senderEmail == userEmail ? item.receiverEmail : item.senderEmail}
                 </Text>
                 <View style={styles.buttonGroup}>
                     {onAccept && (

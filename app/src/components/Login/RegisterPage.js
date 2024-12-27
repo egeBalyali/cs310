@@ -37,7 +37,7 @@ const RegisterPage = ({ navigation }) => {
             />
             <Button title="Register" onPress={handleRegister} />
             {error ? <Text style={styles.error}>{error}</Text> : null}
-            <br></br>
+            
             <Button title="Go to Login" onPress={() => navigation.navigate('Login')} />
         </View>
     );
